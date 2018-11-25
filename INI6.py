@@ -4,6 +4,7 @@
 # @Date    : 18-10-26
 # @Author  : luyang(luyang@novogene.com)
 
+
 def main():
     file = 'input/rosalind_ini6.txt'
     with open(file) as f:
@@ -15,8 +16,9 @@ def main():
             word_dict[word] += 1
         else:
             word_dict[word] = 1
-    for keys,values in word_dict.items():
-        print(keys,values)
+    for keys, values in word_dict.items():
+        print(keys, values)
+
 
 if __name__ == "__main__":
     main()

@@ -3,8 +3,8 @@
 # @File    : ctea.py
 # @Date    : 18-10-29
 # @Author  : luyang(luyang@novogene.com)
-from module.readfasta import readfasta
 from edit import edit
+from module.readfasta import readfasta
 
 
 def count(matrix, seq1, seq2, i, j):

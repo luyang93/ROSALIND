@@ -3,9 +3,13 @@
 # @File    : INI1.py
 # @Date    : 18-10-26
 # @Author  : luyang(luyang@novogene.com)
+import this as this
 
+
+# noinspection PyStatementEffect
 def main():
-    import this
+    # noinspection PyStatementEffect
+    this
 
 
 if __name__ == "__main__":

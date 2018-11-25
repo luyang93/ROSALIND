@@ -3,8 +3,9 @@
 # @File    : edta.py
 # @Date    : 18-10-29
 # @Author  : luyang(luyang@novogene.com)
-from module.readfasta import readfasta
 from edit import edit
+from module.readfasta import readfasta
+
 
 def trace(dist, seq1, seq2):
     i = len(seq1)
@@ -47,6 +48,7 @@ def main():
     (seq1_edit, seq2_edit) = trace(dist, seq1, seq2)
     print(seq1_edit)
     print(seq2_edit)
+
 
 if __name__ == "__main__":
     main()

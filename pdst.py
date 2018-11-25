@@ -4,8 +4,9 @@
 # @Date    : 18-10-29
 # @Author  : luyang(luyang@novogene.com)
 import numpy as np
-from module.readfasta import readfasta
+
 from hamm import hamm
+from module.readfasta import readfasta
 
 
 def main():

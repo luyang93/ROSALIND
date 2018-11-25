@@ -14,12 +14,11 @@ def main():
     seq2 = fasta_seq_dict[keys[1]]
     transitions = [set('AG'), set('CT')]
     transversions = [set('AC'), set('GT'), set('AT'), set('CG')]
-    basepairs = [set('AT'), set('CG')]
     transition_sum = 0
     transversion_sum = 0
     for i in range(len(seq1)):
         if seq1[i] != seq2[i]:
-            pair = set([seq1[i], seq2[i]])
+            pair = {seq1[i], seq2[i]}
             if pair in transitions:
                 # print(pair)
                 transition_sum += 1

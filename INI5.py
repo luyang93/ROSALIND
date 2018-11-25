@@ -4,6 +4,7 @@
 # @Date    : 18-10-26
 # @Author  : luyang(luyang@novogene.com)
 
+
 def main():
     file = 'input/rosalind_ini5.txt'
     with open(file) as f:
