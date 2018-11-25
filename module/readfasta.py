@@ -5,18 +5,19 @@
 # @Author  : luyang(luyang@novogene.com)
 
 def readfasta(file):
-    fasta_seq_dict = {}
+    name_seq = {}
     with open(file) as f:
-        fasta_name = ''
-        fasta_seq = ''
+        name = ''
+        seq = []
         for line in f.readlines():
-            if ">" in line:
-                fasta_name = line.lstrip('>').rstrip('\n')
-                fasta_seq = ''
+            if line.startswith('>'):
+                name_seq[name] = ''.join(seq)
+                name = line.lstrip('>').rstrip('\n')
+                seq = []
             else:
-                fasta_seq += line.rstrip('\n')
-                fasta_seq_dict[fasta_name] = fasta_seq
-    return fasta_seq_dict
+                seq.append(line.strip('\n'))
+    del name_seq['']
+    return name_seq
 
 
 def main():
