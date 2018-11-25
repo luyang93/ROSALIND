@@ -16,13 +16,6 @@ def readfasta(file):
                 seq = []
             else:
                 seq.append(line.strip('\n'))
+    name_seq[name] = ''.join(seq)
     del name_seq['']
     return name_seq
-
-
-def main():
-    pass
-
-
-if __name__ == '__main__':
-    main()
