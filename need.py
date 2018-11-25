@@ -4,15 +4,17 @@
 # @Date    : 18-10-28
 # @Author  : luyang(luyang@novogene.com)
 import os
-from Bio import Entrez
-from Bio.Emboss.Applications import NeedleCommandline
-from Bio import SeqIO
-from Bio import AlignIO
 import subprocess
+
+from Bio import AlignIO
+from Bio import Entrez
+from Bio import SeqIO
+from Bio.Emboss.Applications import NeedleCommandline
 
 
 def main():
-    os.environ['http_proxy'] = 'http://127.0.0.1:1081'
+    os.environ['http_proxy'] = 'http://localhost:1081'
+    os.environ['PATH'] += ':/home/luyang/miniconda3/envs/PCC/bin'
     file = 'input/rosalind_need.txt'
     with open(file) as f:
         ids = f.readline().strip().split()
@@ -20,33 +22,31 @@ def main():
     Entrez.api_key = 'd75c9c53e469a62dc79517fb9e47b3b18e08'
     handle = Entrez.efetch(db='nucleotide', id=ids, rettype='fasta')
     records = list(SeqIO.parse(handle, 'fasta'))
+    # with open('output/seq1.fasta', 'w') as f:
+    #     SeqIO.write(records[0], f, 'fasta')
+    # with open('output/seq2.fasta', 'w') as f:
+    #     SeqIO.write(records[1], f, 'fasta')
     handle.close()
-    with open('seq1.fasta', 'w') as f:
-        SeqIO.write(records[0], f, 'fasta')
-    with open('seq2.fasta', 'w') as f:
-        SeqIO.write(records[1], f, 'fasta')
-    # print('>', end='')
-    # print(records[0].description)
-    # print(records[0].seq)
-    # print('>', end='')
-    # print(records[1].description)
-    # print(records[1].seq)
     needle_cline = NeedleCommandline()
-    # needle_cline.program_name=subprocess.getoutput('which needle')
-    needle_cline.asequence = 'seq1.fasta'
-    needle_cline.bsequence = 'seq2.fasta'
+    needle_cline.asequence = 'asis:' + str(records[0].seq)
+    needle_cline.bsequence = 'asis:' + str(records[1].seq)
+    # needle_cline.asequence = 'output/seq1.fasta'
+    # needle_cline.bsequence = 'output/seq2.fasta'
     needle_cline.gapopen = 10
     needle_cline.gapextend = 1
     needle_cline.endopen = 10
     needle_cline.endextend = 1
     needle_cline.endweight = True
-    needle_cline.outfile = 'output/needle.txt'
-    child = subprocess.Popen(str(needle_cline), shell=True)
-    child.wait()
-    os.remove('seq1.fasta')
-    os.remove('seq2.fasta')
-    align = AlignIO.read('output/needle.txt', 'emboss')
+    needle_cline.outfile = 'stdout'
+    child = subprocess.Popen([str(needle_cline)], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    result = child.stdout.read().decode('utf-8')
+    with open('output/needle.txt', 'w') as f:
+        f.writelines(result)
+    with open('output/needle.txt', 'r') as f:
+        align = AlignIO.read(f, 'emboss')
     print(align.annotations['score'])
+    # os.remove('output/seq1.fasta')
+    # os.remove('output/seq2.fasta')
     os.remove('output/needle.txt')
 
 
