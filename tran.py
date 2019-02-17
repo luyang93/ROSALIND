@@ -3,6 +3,8 @@
 # @File    : tran.py
 # @Date    : 18-10-29
 # @Author  : luyang(luyang@novogene.com)
+
+
 from module.readfasta import readfasta
 
 

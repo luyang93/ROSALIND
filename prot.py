@@ -3,6 +3,8 @@
 # @File    : prot.py
 # @Date    : 2019-02-15
 # @Author  : luyang(luyang@novogene.com)
+
+
 from Bio.Seq import Seq
 
 

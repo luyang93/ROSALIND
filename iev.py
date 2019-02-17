@@ -4,6 +4,7 @@
 # @Date    : 2019-02-16
 # @Author  : luyang(luyang@novogene.com)
 
+
 def main():
     file = 'input/rosalind_iev.txt'
     with open(file) as f:

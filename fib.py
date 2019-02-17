@@ -4,6 +4,7 @@
 # @Date    : 2019-02-15
 # @Author  : luyang(luyang@novogene.com)
 
+
 import numpy as np
 from prettytable import PrettyTable
 

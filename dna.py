@@ -4,6 +4,7 @@
 # @Date    : 2019-02-15
 # @Author  : luyang(luyang@novogene.com)
 
+
 def main():
     file = 'input/rosalind_dna.txt'
     with open(file) as f:
